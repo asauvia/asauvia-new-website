@@ -41,7 +41,7 @@ export default function Hero() {
 
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight mb-8 max-w-5xl mx-auto leading-[1.1]">
           <span className="hero-gradient-text">Transforming Business Through</span>
-          <span className="block bg-gradient-to-r from-primary via-accent-cyan to-accent-purple bg-clip-text text-transparent">
+          <span className="block bg-gradient-to-r from-primary via-accent-cyan to-accent-purple bg-clip-text text-transparent pb-6">
             Intelligent Automation
           </span>
         </h1>
@@ -61,7 +61,7 @@ export default function Hero() {
           </a>
         </div>
 
-        <div className="pt-12 border-t border-white/5">
+        <div className="pt-12 ">
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-slate-500 mb-8">Trusted by Global Enterprise Leaders</p>
           <div className="flex flex-wrap justify-center items-center gap-10 md:gap-20 grayscale opacity-60 hover:grayscale-0 transition-all duration-500">
             {[
