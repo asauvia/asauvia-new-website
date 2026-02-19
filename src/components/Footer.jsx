@@ -36,7 +36,7 @@ export default function Footer() {
             <h5 className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-6">Connect</h5>
             <div className="flex gap-4">
               {[
-                { icon: "linkedin", href: "https://www.linkedin.com/company/asauvia/?viewAsMember=true" },
+                { icon: "linkedin", href: "https://www.linkedin.com/company/asauvia" },
                 { icon: "alternate_email", href: "mailto:info@asauvia.com" }
               ].map(({ icon, href }) => (
                 <a key={icon} className="w-8 h-8 rounded-full border border-slate-800 flex items-center justify-center hover:bg-primary transition-all text-slate-400 hover:text-white" href={href} aria-label={icon}>
