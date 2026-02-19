@@ -75,7 +75,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="text-sm text-cyan-100 font-medium">Email Address</p>
-                    <p className="text-lg font-semibold">contact@asauvia.com</p>
+                    <p className="text-lg font-semibold">info@asauvia.com</p>
                   </div>
                 </div>
 
