@@ -34,12 +34,12 @@ export default function Hero() {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800/40 border border-slate-700/50 text-slate-300 mb-8 animate-float">
+        {/* <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800/40 border border-slate-700/50 text-slate-300 mb-8 animate-float">
           <span className="flex h-2 w-2 rounded-full bg-primary animate-pulse" />
           <span className="text-xs font-semibold tracking-wider uppercase">V 2.0.4 • Enterprise AI Suite</span>
-        </div>
+        </div> */}
 
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight mb-8 max-w-5xl mx-auto leading-[1.1]">
+        <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight mb-8 max-w-5xl mx-auto leading-[1.1] pt-12">
           <span className="hero-gradient-text">Transforming Business Through</span>
           <span className="block bg-gradient-to-r from-primary via-accent-cyan to-accent-purple bg-clip-text text-transparent pb-6">
             Intelligent Automation
@@ -60,8 +60,8 @@ export default function Hero() {
             Explore Solutions
           </a>
         </div>
-
-        <div className="pt-12 ">
+        {/* <div className="pt-12 ">
+         <div className="pt-12 border-t border-white/5">
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-slate-500 mb-8">Trusted by Global Enterprise Leaders</p>
           <div className="flex flex-wrap justify-center items-center gap-10 md:gap-20 grayscale opacity-60 hover:grayscale-0 transition-all duration-500">
             {[
@@ -76,7 +76,7 @@ export default function Hero() {
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
       </div>
     </main>
   );
