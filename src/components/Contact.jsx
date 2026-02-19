@@ -1,4 +1,38 @@
+import { useRef, useState } from 'react';
+import emailjs from '@emailjs/browser';
+
 export default function Contact() {
+  const form = useRef();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [statusMessage, setStatusMessage] = useState({ type: '', text: '' });
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setStatusMessage({ type: '', text: '' });
+
+    // Set the current time in the hidden input field
+    const now = new Date();
+    form.current.elements.time.value = now.toLocaleString();
+
+    emailjs
+      .sendForm('service_53i2mg7', 'template_vhngon2', form.current, {
+        publicKey: '-UpEZ6do4zlk61N3A',
+      })
+      .then(
+        () => {
+          setStatusMessage({ type: 'success', text: 'Message sent successfully!' });
+          form.current.reset();
+        },
+        (error) => {
+          setStatusMessage({ type: 'error', text: 'Failed to send message. Please try again.' });
+          console.error('FAILED...', error.text);
+        },
+      )
+      .finally(() => {
+        setIsSubmitting(false);
+      });
+  };
   return (
     <section id="contact" className="mesh-gradient-bg py-20 px-4">
       <div className="max-w-6xl w-full mx-auto">
@@ -51,20 +85,20 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="text-sm text-cyan-100 font-medium">Headquarters</p>
-                    <p className="text-lg font-semibold">India</p>
+                    <p className="text-lg font-semibold">Uttar Pradesh, India</p>
                   </div>
                 </div>
               </div>
             </div>
 
             <div className="mt-12 relative z-10 flex space-x-4">
-              <a className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors" href="#" aria-label="Facebook">
+              {/* <a className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors" href="#" aria-label="Facebook">
                 <span className="material-symbols-outlined">share</span>
               </a>
               <a className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors" href="#" aria-label="Twitter">
                 <span className="material-symbols-outlined">rss_feed</span>
-              </a>
-              <a className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors" href="#" aria-label="Email">
+              </a> */}
+              <a className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors" href="mailto:info@asauvia.com" aria-label="Email">
                 <span className="material-symbols-outlined">alternate_email</span>
               </a>
               <a className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors" href="https://www.linkedin.com/company/asauvia/?viewAsMember=true" aria-label="LinkedIn">
@@ -77,8 +111,9 @@ export default function Contact() {
 
           {/* Right form */}
           <div className="md:w-[60%] p-8 md:p-14 bg-white dark:bg-slate-900 text-slate-900 dark:text-white">
-            <form className="space-y-10" onSubmit={(e) => e.preventDefault()}>
+            <form ref={form} className="space-y-10" onSubmit={sendEmail}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
+                <input type="hidden" name="time" />
                 {[
                   ["name", "Your Name", "text"],
                   ["email", "Your Email", "email"],
@@ -92,6 +127,7 @@ export default function Contact() {
                       name={id}
                       placeholder=" "
                       type={type}
+                      required
                     />
                     <label className="absolute left-0 top-2.5 text-slate-500 dark:text-slate-400 transition-all duration-300 pointer-events-none origin-left" htmlFor={id}>
                       {label}
@@ -107,20 +143,28 @@ export default function Contact() {
                   name="message"
                   placeholder=" "
                   rows={4}
+                  required
                 />
                 <label className="absolute left-0 top-2.5 text-slate-500 dark:text-slate-400 transition-all duration-300 pointer-events-none origin-left" htmlFor="message">
                   Write here your message
                 </label>
               </div>
 
-              <div className="pt-4">
+              <div className="pt-4 flex flex-col gap-4">
                 <button
-                  className="gradient-btn group relative w-full md:w-auto px-10 py-4 bg-gradient-to-r from-primary to-blue-600 text-white font-bold rounded-lg shadow-lg hover:translate-y-[-2px] transition-all duration-300 flex items-center justify-center gap-2"
+                  className={`gradient-btn group relative w-full md:w-auto px-10 py-4 bg-gradient-to-r from-primary to-blue-600 text-white font-bold rounded-lg shadow-lg hover:translate-y-[-2px] transition-all duration-300 flex items-center justify-center gap-2 ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
                   type="submit"
+                  disabled={isSubmitting}
                 >
-                  <span>Send Message</span>
-                  <span className="material-symbols-outlined text-lg group-hover:translate-x-1 transition-transform">send</span>
+                  <span>{isSubmitting ? 'Sending...' : 'Send Message'}</span>
+                  {!isSubmitting && <span className="material-symbols-outlined text-lg group-hover:translate-x-1 transition-transform">send</span>}
                 </button>
+
+                {statusMessage.text && (
+                  <p className={`text-sm ${statusMessage.type === 'success' ? 'text-green-500' : 'text-red-500'}`}>
+                    {statusMessage.text}
+                  </p>
+                )}
               </div>
             </form>
           </div>
