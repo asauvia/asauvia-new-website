@@ -58,16 +58,16 @@ export default function Contact() {
               </p>
 
               <div className="space-y-8">
-                <div className="flex items-start space-x-4">
+                {/* <div className="flex items-start space-x-4">
                   <div className="bg-white/10 p-2.5 rounded-lg">
                     <span className="material-symbols-outlined text-2xl">call</span>
                   </div>
                   <div>
                     <p className="text-sm text-cyan-100 font-medium">Phone Number</p>
                     <p className="text-lg font-semibold">+91 7081745339</p>
-                    {/* <p className="text-lg font-semibold">+988678363866</p> */}
+                    {<p className="text-lg font-semibold">+988678363866</p> }
                   </div>
-                </div>
+                </div> */}
 
                 <div className="flex items-start space-x-4">
                   <div className="bg-white/10 p-2.5 rounded-lg">
